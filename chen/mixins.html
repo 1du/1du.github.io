@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mixins</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <h1>Mixins</h1>
+    <hr>
+    <div id="app">
+        {{num}}
+        <p><button @click="add">ADD</button></p>
+    </div>
+
+    <script type="text/javascript">
+        var addlog={
+            updated:function(){
+                console.log("数据发生变化，变成了"+this.num+".")
+            }
+        };
+
+        Vue.mixin({
+            updated:function(){
+                console.log("我是全局的混入！")
+            }
+        });
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            },
+            updated:function(){
+                console.log("我是原生的console.log")
+            },
+            mixins:[addlog]//混入
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind标签源绑定</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <h1>v-bind标签源绑定 简写：</h1>
+    <hr>
+    <div id="app">
+        <img v-bind:src="imgSrc" alt="" height="200">
+        <p><a :href="webUrl">网址导航</a></p>
+        <hr>
+        <div class="classA">1、绑定Class</div>
+        <div :class="{classA:isOK}">2、绑定Class中的判断</div>
+        <div :class="[classA,classB]">3、绑定Class中的数组</div>
+        <div :class="isOK?classA:classB">4、绑定Class中的三元运算符</div>
+        <hr>
+        <div>
+            <input type="checkbox" id="isOK" v-model="isOK">
+            <label for="isOK">isOK={{isOK}}</label>
+        </div>
+        <hr>
+        <div :style="{color:red,fontsize:font}">5、绑定style值</div>
+        <div :style="styleObject">6、对象绑定style</div>
+    </div>
+    <style>
+        .classA{color: red;}
+        .classB{font-size: 150%;}
+    </style>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510740734012&di=86e618454f2ac7ea75a751e4b5b5718f&imgtype=0&src=http%3A%2F%2Fpic14.nipic.com%2F20110602%2F2249751_104233310182_2.jpg',
+                webUrl:'http://www.baidu.com',
+                isOK:true,
+                classA:'classA',
+                classB:'classB',
+                red:'red',
+                font:'20px',
+                styleObject:{
+                    color:'green',
+                    fontSize:'30px'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
